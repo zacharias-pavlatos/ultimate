@@ -1,0 +1,35 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 16px;
+  padding: 20px;
+}
+
+.header {
+  border-bottom: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: white;
+}
+
+.button {
+  border: none;
+  padding: 5px 10px;
+  background: white;
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: blue;
+}
+
+.button:disabled {
+  color: lightgrey;
+}
