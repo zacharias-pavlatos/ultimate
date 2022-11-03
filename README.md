@@ -1,46 +1,92 @@
-# Getting Started with Create React App
+# ultimate.ai Frontend-Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hello! We're excited about your interest in joining the Ultimate team. We also really appreciate you taking the time to
+go through this task, so if you have any questions regarding this task, please don't hesitate to reach out to us!
 
-## Available Scripts
+We would like you to spend not more than a few hours on this exercise. We are primarily interested in getting a feel to
+how you structure your code, and that the solution fulfills the basic requirements below. It doesn't have to be perfect!
 
-In the project directory, you can run:
+## Some Background Information
 
-### `yarn start`
+Most of our clients use our AI as a customer service bot in chats on their websites.
+When one of their users writes a message in the chat, our AI analyzes that message to understand the user's intent and
+gives the appropriate reply, for example:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
+> User: "Hello"
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+*AI understands that this is a Greeting*
 
-### `yarn test`
+> AI: "Hello :) How can I help you?"
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In order to understand what the user wants, our AI is trained to recognize different intents.
 
-### `yarn build`
+For each intent the AI gets a list of user messages (we call them expressions) as training data to learn
+how users express that intent.
+For every intent there will also be a reply that the AI Bot should return, once it recognizes a specific intent.
+In the above example that intent would look like this:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+Intent: Greeting
+- Training Expressions: "Hello", "Hi", "Hey there!", "Good morning!", ...
+- Reply: "Hello :) How can I help you?"
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `yarn eject`
+Most of the intents are specific to the client's business. An airline will have other intents than an eCommerce
+platform.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Some intents, however, are used by almost all of our clients. So when a client creates a new AI bot in our software, we
+offer them a list of already pretrained intents as part of the bot creation process. They can choose to make use of
+these
+pretrained intents in their AI Bot, and so save time and effort.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Your Challenge
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Attached you find a JSON file with pretrained intents.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Each item in the JSON contains the following:
 
-## Learn More
+- `id`: The unique ID that identifies the intent.
+- `name`: The name of that intent.
+- `description`: A string describing what the intent is used for.
+- `trainingData`: The training data that is used to train the AI. It contains:
+    - `expressionCount`: the total number of training expressions for this intent
+    - `expressions`: An array with three example expressions for this intent, each with a unique `id` and a `text` field
+      with the expression.
+- `reply`: The reply that the bot will give when the intent is recognized, containing again a unique `id` and a `text`
+  field with the actual reply.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Your challenge is to build a page, in which our clients can see the pretrained intents and select the ones they want
+to use in their AI bot.**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**This page would be one step of a wizard in the above-mentioned bot creation process
+(No need to build the actual wizard of course ;)).**
+
+We did not include a design or mockups, so you are free to solve that challenge in the way you see appropriate. The 
+design should be functional. It doesn't have to be very pretty. It's more important for us to see
+well-structured code and flawless functionality than a pretty UI.
+
+## Minimum Requirements
+
+- Your page allows users to get an overview over all the pretrained intents that are available (see intents.json).
+- Users can see at least one example expression without any extra clicks.
+- Users can select/unselect intents individually or all at once.
+- There is no need to persist the selection upon reloading the page.
+
+- Please implement as UI as React SPA. You may use `create-react-app` or similar if you like.
+- You are free to use any additional libraries you like.
+- Your solution should work on a desktop with a modern browser.
+- We love tests, but they are not a requirement to complete this challenge, so only add them if you have the extra time.
+
+## What we look for:
+
+- Clean code that is easy to read and written with reusability and testability in mind.
+- Well-structured components, with focus on separation-of-concerns, single-responsibility principle and adequate usage
+  of the features the React ecosystem offers.
+- If seem necessary, some comments to help us understand your design considerations.
+- A simple UI that is easy to understand and intuitive to use.
