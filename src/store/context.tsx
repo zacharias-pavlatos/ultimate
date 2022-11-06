@@ -24,11 +24,7 @@ const initialState: IntentContextState = {
 };
 
 //--- Context
-export const IntentsContext = createContext<IntentsContextProps>({
-  state: initialState,
-  dispatch: () => null,
-  actions: intentsActions(initialState, () => initialState),
-});
+export const IntentsContext = createContext<IntentsContextProps | null>(null);
 
 //--- Provider
 const IntentsProvider = ({ children }: { children: React.ReactNode }) => {
@@ -44,9 +40,12 @@ const IntentsProvider = ({ children }: { children: React.ReactNode }) => {
 
 //--- Hook
 const useIntents = () => {
-  const { state, dispatch, actions } = useContext(IntentsContext);
-  const { intents, selectedIntentsIds } = state;
-  const { selectAll, unselectAll, handleIntentClick } = actions;
+  const context = useContext(IntentsContext);
+  if (!context)
+    throw new Error("IntentsContext must be called from within its Provider");
+
+  const { intents, selectedIntentsIds } = context.state;
+  const { selectAll, unselectAll, handleIntentClick } = context.actions;
   return {
     intents,
     selectedIntentsIds,
